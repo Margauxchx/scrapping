@@ -8,7 +8,7 @@ def symbols
 
   page = Nokogiri::HTML(open("https://coinmarketcap.com/all/views/all/"))
   crypto_symbols = page.xpath('///*[@id]/td[3]')
-  crypto_prices = page.xpath('///*[@id]/td[5]')
+  crypto_prices = page.xpath('//*[@class="price"]')
 
   list_symbols = Array.new 
   list_prices = Array.new
@@ -21,7 +21,7 @@ def symbols
     list_prices << i.text
   end
   
-  puts Hash[list_symbols.zip(list_prices)]
+ puts hash = list_symbols.zip(list_prices).to_h
   
 end
 
